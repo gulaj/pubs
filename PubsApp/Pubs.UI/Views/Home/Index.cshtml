@@ -1,0 +1,44 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<div ng-controller="googlePlacesController">
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            @Html.ActionLink("Find your place", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+        </div>
+            <div class="container">
+            <div class="form-inline">
+                <span isteven-multi-select
+                      input-model="poiTypes"
+                      output-model="selectedPoiTypes"
+                      item-label="name"
+                      button-label="name"
+                      tick-property="ticked">
+                </span>
+                <input type="number" ng-model="selectedRadius" max="10" min="1" class="form-control input-sm" />
+                <button ng-click="searchPlaces()" class="btn btn-primary">Search your POI</button>
+            </div>
+        </div>  
+        <div class="text-danger">{{error}}</div>
+    </div>
+    <div id="map-container" style="min-height:800px">
+        <ng-map default-style="false" style="display: block; height:800px;" center="{{lat}}, {{lng}}">
+            <marker ng-repeat="poi in poiList track by $index"
+                    id='{{poi.id}}' 
+                    position="{{poi.location.lat}}, {{poi.location.lng}}"
+                    icon="{{poi.icon}}"
+                    on-click="showDetails(poi)">
+            </marker>
+            <info-window id="info-window">
+                <div>
+                    <strong>{{selectedPoi.name}}</strong> <br />
+                    Address: {{selectedPoi.address}}<br />
+                    Rating: {{selectedPoi.rating}}
+                </div>
+            </info-window>
+
+        </ng-map>
+    </div>
+
+</div>

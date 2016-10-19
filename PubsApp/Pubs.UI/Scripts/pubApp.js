@@ -1,0 +1,1 @@
+﻿var pubApp = angular.module('pubApp', ['ngMap', 'isteven-multi-select'])
