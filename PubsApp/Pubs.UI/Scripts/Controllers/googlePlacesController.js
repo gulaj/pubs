@@ -1,4 +1,6 @@
 ﻿pubApp.controller('googlePlacesController', ['$scope', '$http', 'NgMap', function ($scope, $http, NgMap) {
+    var apiUrl = 'http://localhost/Pubs.WebApi/api/';
+
         $scope.radius = 2;
 
         $scope.poiTypes = [
@@ -71,7 +73,6 @@
 
             //var findNearestUri = apiUrlPattern.replace("{types}", poiTypes).replace("{radius}", $scope.selectedRadius * 1000).replace("{lat}", $scope.lat).replace("{lng}", $scope.lng);
 
-            var findNearestUri = 'http://localhost/Pubs.WebApi/api/Places/Find/Nearest/';
             var params = {
                 Radius: $scope.selectedRadius * 1000,
                 Latitude: $scope.lat,
@@ -81,7 +82,7 @@
             }
             $http({
                 method: 'GET',
-                url: findNearestUri,
+                url: apiUrl + 'Places/Find/Nearest/',
                 params: params,
             }).then(function (response) {
                 poiDetails(response.data);
@@ -93,7 +94,7 @@
         function setDefaultLocation() {
             $http({
                 method: 'GET',
-                url: 'http://localhost/Pubs.WebApi/api/Location/DefaultLocation',
+                url: apiUrl + 'Location/DefaultLocation',
             }).then(function (response) {
                 $scope.lat = response.data.Latitude;
                 $scope.lng = response.data.Longitude;
