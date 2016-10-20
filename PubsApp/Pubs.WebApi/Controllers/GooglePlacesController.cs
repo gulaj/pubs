@@ -32,18 +32,7 @@ namespace Pubs.WebApi.Controllers
             }
             return NotFound();
         }
-
-        //[Route("DefaultLocation")]
-        //public async Task<IHttpActionResult> Get()
-        //{
-        //    var result = await _placeService.GetDefaultLocationAsync();
-
-        //    if (result != null)
-        //    {
-        //        return Ok(result);
-        //    }
-        //    return NotFound();
-        //}
+        
 
     }
 }

@@ -47,9 +47,9 @@
                 $scope.latitude = data[0].geometry.location.lat;
                 $scope.longitude = data[0].geometry.location.lng;
             }
-                data.forEach(function (value) {
+                data.forEach(function (value, key) {
                 var locationData = {
-                    id: value.id,
+                    id: 'poi_' + key,
                     location: value.geometry.location,
                     name: value.name,
                     address: value.vicinity ? value.vicinity : value.formatted_address,
