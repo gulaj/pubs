@@ -5,6 +5,7 @@
             {
                 type: "bar",
                 name: "Bars & Pubs",
+                ticked: true
             },
             {
                 type: "meal_delivery",
@@ -96,6 +97,7 @@
             }).then(function (response) {
                 $scope.lat = response.data.Latitude;
                 $scope.lng = response.data.Longitude;
+                $scope.searchPlaces();
             }, function () {
                 $scope.error = "Default location is not available";
             });
@@ -104,10 +106,11 @@
         function getCurrentLocation(location) {
             $scope.lat = location.coords.latitude;
             $scope.lng = location.coords.longitude;
+            $scope.searchPlaces();
         }
        
         if (navigator.geolocation) {
-            var location = navigator.geolocation.getCurrentPosition(getCurrentLocation, setDefaultLocation());
+            navigator.geolocation.getCurrentPosition(getCurrentLocation, setDefaultLocation());
 
         }
         else {
